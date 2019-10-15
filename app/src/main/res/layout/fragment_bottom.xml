@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#50dedede">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true">
 
         <LinearLayout
@@ -20,7 +21,7 @@
                 android:id="@+id/bt_home"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@mipmap/ic_launcher_round" />
+                android:background="@mipmap/home_click" />
 
             <TextView
                 android:id="@+id/tv_home"
@@ -45,7 +46,7 @@
                 android:id="@+id/bt_type"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@mipmap/type_unclick" />
 
             <TextView
                 android:id="@+id/tv_type"
@@ -69,7 +70,7 @@
                 android:id="@+id/bt_hot"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@mipmap/hot_unclick" />
 
             <TextView
                 android:id="@+id/tv_hot"
@@ -93,7 +94,7 @@
                 android:id="@+id/bt_live"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@mipmap/live_unclick" />
 
             <TextView
                 android:id="@+id/tv_live"
@@ -117,7 +118,7 @@
                 android:id="@+id/bt_myself"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@mipmap/ic_launcher" />
+                android:background="@mipmap/myself_unclick" />
 
             <TextView
                 android:id="@+id/tv_myself"

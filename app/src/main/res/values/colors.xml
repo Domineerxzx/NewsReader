@@ -3,4 +3,12 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="colorAppStyle">#CD000000</color>
+    <color name="colorWhite">#FFFFFFFF</color>
+    <color name="colorAdmin">#FFFFFF</color>
+    <color name="colorUser">#CD000000</color>
+    <color name="colorLine">#bebebe</color>
+
+    <color name="colorBaffle">#51000000</color>
 </resources>
