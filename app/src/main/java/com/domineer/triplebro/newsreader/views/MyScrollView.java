@@ -1,0 +1,38 @@
+package com.domineer.triplebro.newsreader.views;
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.view.ViewTreeObserver;
+import android.widget.ScrollView;
+
+import com.domineer.triplebro.newsreader.interfaces.OnScrollChangedListener;
+
+
+public class MyScrollView extends ScrollView {
+
+    private OnScrollChangedListener onScrollChangedListener;
+
+    public MyScrollView(Context context) {
+        super(context);
+    }
+
+    public MyScrollView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public MyScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
+    public void setOnScrollChangedListener(OnScrollChangedListener scrollViewListener) {
+        this.onScrollChangedListener = scrollViewListener;
+    }
+
+    @Override
+    protected void onScrollChanged(int x, int y, int oldx, int oldy) {
+        super.onScrollChanged(x, y, oldx, oldy);
+        if (onScrollChangedListener != null) {
+            onScrollChangedListener.onScrollChanged(this, x, y, oldx, oldy);
+        }
+    }
+}

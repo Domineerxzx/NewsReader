@@ -1,4 +1,4 @@
-package com.domineer.triplebro.newsreader.propertoes;
+package com.domineer.triplebro.newsreader.properties;
 
 public class ProjectProperties {
 

@@ -8,7 +8,7 @@ import android.os.Message;
 
 import com.domineer.triplebro.newsreader.activities.AdminManagerActivity;
 import com.domineer.triplebro.newsreader.activities.LoginActivity;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 
 
 public class LoginHandler extends Handler {

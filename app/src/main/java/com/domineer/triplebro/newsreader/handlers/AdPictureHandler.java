@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.domineer.triplebro.newsreader.activities.MainActivity;
 import com.domineer.triplebro.newsreader.activities.SplashActivity;
 import com.domineer.triplebro.newsreader.controllers.DataInitManager;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 
 public class AdPictureHandler extends Handler {
 

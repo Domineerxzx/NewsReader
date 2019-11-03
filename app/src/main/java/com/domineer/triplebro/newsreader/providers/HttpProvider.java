@@ -3,11 +3,10 @@ package com.domineer.triplebro.newsreader.providers;
 import android.os.Message;
 
 import com.domineer.triplebro.newsreader.handlers.AdPictureHandler;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 import com.domineer.triplebro.newsreader.utils.httpUtils.HttpUtils;
 
 import java.io.IOException;
-import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;

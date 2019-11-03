@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.domineer.triplebro.newsreader">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -17,6 +17,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".activities.ShutUpActivity"
+            android:theme="@style/AppCompatFullScreenTheme"/>
+        <activity
+            android:name=".activities.VideoActivity"
+            android:theme="@style/AppCompatFullScreenTheme" />
+        <activity android:name=".activities.AboutUsActivity" />
+        <activity
+            android:name=".activities.CollectActivity"
+            android:theme="@style/AppCompatFullScreenTheme" />
+        <activity android:name=".activities.NewsListActivity" />
+        <activity android:name=".activities.NewsActivity" />
+        <activity android:name=".activities.SearchActivity" />
         <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,14 +36,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainActivity"/>
-        <activity android:name=".activities.LoginActivity"/>
-        <activity android:name=".activities.RegisterActivity"/>
-        <activity android:name=".activities.AdminManagerActivity"/>
-        <activity android:name=".activities.SettingActivity"/>
+        <activity android:name=".activities.MainActivity" />
+        <activity android:name=".activities.LoginActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.AdminManagerActivity" />
+        <activity android:name=".activities.SettingActivity" />
 
-        <service android:name=".services.NetworkConnectionService"/>
+        <service android:name=".services.NetworkConnectionService" />
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.domineer.triplebro.newsreader"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

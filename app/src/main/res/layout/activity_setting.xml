@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
-    android:padding="10dp">
+    android:background="#fff">
 
     <RelativeLayout
         android:id="@+id/rl_title"
@@ -46,6 +45,7 @@
         android:background="@drawable/shape_user_button"
         android:layout_marginTop="20dp"
         android:textColor="#fff"
-        android:textSize="12dp"/>
+        android:textSize="12dp"
+        android:layout_margin="20dp"/>
 
 </RelativeLayout>

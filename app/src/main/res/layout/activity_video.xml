@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <ImageView
+            android:id="@+id/iv_close_video"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="实况详情"
+            android:textSize="16dp"
+            android:textColor="@color/colorAppStyle"/>
+
+        <ImageView
+            android:id="@+id/iv_collect"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@id/tv_title"
+            android:background="@mipmap/collection"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorLine" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_title"
+        android:scrollbars="none">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+                android:id="@+id/vp_live"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/vp_live"
+                android:id="@+id/tv_video_title"
+                android:textSize="18dp"
+                android:textColor="@color/colorAppStyle"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:id="@+id/rl_author"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/tv_video_title">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_time"
+                    android:textSize="12dp"
+                    android:textColor="@color/colorLine"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_author"
+                    android:textSize="12dp"
+                    android:layout_toRightOf="@id/tv_time"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorLine"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_playTime"
+                    android:textSize="12dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@id/tv_author"
+                    android:text="播放次数："
+                    android:textColor="@color/colorLine"/>
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:id="@+id/tv_like"
+                android:layout_alignParentRight="true"
+                android:layout_below="@id/rl_author"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="12dp"
+                android:gravity="center"
+                android:text="1122"
+                android:textColor="@color/colorLine"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/iv_like"
+                android:layout_toLeftOf="@id/tv_like"
+                android:layout_below="@id/rl_author"
+                android:layout_marginRight="10dp"
+                android:background="@mipmap/like"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:id="@+id/tv_comment"
+                android:text="评论区"
+                android:background="@drawable/shape_user_button"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:layout_below="@id/rl_author"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="20dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="还没登录呢，不能查看及发表评论！！！"
+                android:textColor="@color/colorAppStyle"
+                android:layout_below="@id/tv_comment"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:layout_marginBottom="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"
+                android:id="@+id/tv_tip"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_comment"
+                android:id="@+id/rl_comment">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_comment_inside">
+                    <com.domineer.triplebro.newsreader.views.MyListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lv_comment"
+                        android:padding="20dp"
+                        android:scrollbars="none" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="还没人评论过，快来抢沙发！！！"
+                        android:gravity="center"
+                        android:textSize="15dp"
+                        android:textColor="@color/colorAppStyle"
+                        android:layout_marginBottom="20dp"
+                        android:textStyle="bold"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone"
+                        android:id="@+id/tv_tip_inside"/>
+                </RelativeLayout>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/tv_add_comment"
+                    android:text="发表评论"
+                    android:background="@drawable/shape_user_button"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_below="@id/rl_comment_inside"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp" />
+
+                <EditText
+                    android:id="@+id/et_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:textSize="13dp"
+                    android:textColor="@color/colorAppStyle"
+                    android:background="@drawable/shape_user_edit"
+                    android:layout_below="@id/tv_add_comment"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:hint="请输入您的评论内容"
+                    android:gravity="center"/>
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/tv_submit_comment"
+                    android:text="评论"
+                    android:background="@drawable/shape_user_button"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_below="@id/et_comment"
+                    android:layout_marginRight="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:id="@+id/tv_clear"
+                    android:text="清空"
+                    android:background="@drawable/shape_alpha_card"
+                    android:textColor="@color/colorWhite"
+                    android:gravity="center"
+                    android:layout_below="@id/et_comment"
+                    android:layout_toLeftOf="@id/tv_submit_comment"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

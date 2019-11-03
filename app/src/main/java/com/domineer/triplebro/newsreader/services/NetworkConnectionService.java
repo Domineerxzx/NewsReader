@@ -18,7 +18,7 @@ import com.domineer.triplebro.newsreader.database.NewsReaderDataBase;
 import com.domineer.triplebro.newsreader.handlers.AdPictureHandler;
 import com.domineer.triplebro.newsreader.handlers.LoginHandler;
 import com.domineer.triplebro.newsreader.handlers.RegisterHandler;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 import com.domineer.triplebro.newsreader.providers.HttpProvider;
 import com.domineer.triplebro.newsreader.utils.httpUtils.HttpUtils;
 

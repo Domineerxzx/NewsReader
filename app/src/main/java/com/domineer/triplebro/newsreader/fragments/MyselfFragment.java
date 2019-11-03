@@ -22,10 +22,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.domineer.triplebro.newsreader.R;
+import com.domineer.triplebro.newsreader.activities.AboutUsActivity;
+import com.domineer.triplebro.newsreader.activities.CollectActivity;
 import com.domineer.triplebro.newsreader.activities.LoginActivity;
 import com.domineer.triplebro.newsreader.activities.SettingActivity;
 import com.domineer.triplebro.newsreader.database.NewsReaderDataBase;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 import com.domineer.triplebro.newsreader.utils.dialogUtils.ChooseUserHeadDialogUtil;
 import com.domineer.triplebro.newsreader.utils.imageUtils.RealPathFromUriUtils;
 
@@ -66,6 +68,15 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
     private String userHead;
     private LinearLayout ll_user_username;
     private LinearLayout ll_user_nickname;
+    private ImageView iv_collect;
+    private ImageView iv_collect_more;
+    private RelativeLayout rl_collect;
+    private TextView tv_collect;
+    private ImageView iv_about_us;
+    private ImageView iv_about_us_more;
+    private RelativeLayout rl_about_us;
+    private TextView tv_about_us;
+    private int user_id;
 
     @Nullable
     @Override
@@ -88,11 +99,19 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
         iv_setting = (ImageView) fragment_myself.findViewById(R.id.iv_setting);
         iv_setting_more = (ImageView) fragment_myself.findViewById(R.id.iv_setting_more);
         rl_setting = (RelativeLayout) fragment_myself.findViewById(R.id.rl_setting);
+        tv_setting = (TextView) fragment_myself.findViewById(R.id.tv_setting);
+        iv_collect = (ImageView) fragment_myself.findViewById(R.id.iv_collect);
+        iv_collect_more = (ImageView) fragment_myself.findViewById(R.id.iv_collect_more);
+        rl_collect = (RelativeLayout) fragment_myself.findViewById(R.id.rl_collect);
+        tv_collect = (TextView) fragment_myself.findViewById(R.id.tv_collect);
+        iv_about_us = (ImageView) fragment_myself.findViewById(R.id.iv_about_us);
+        iv_about_us_more = (ImageView) fragment_myself.findViewById(R.id.iv_about_us_more);
+        rl_about_us = (RelativeLayout) fragment_myself.findViewById(R.id.rl_about_us);
+        tv_about_us = (TextView) fragment_myself.findViewById(R.id.tv_about_us);
         ll_user_username = (LinearLayout) fragment_myself.findViewById(R.id.ll_user_username);
         ll_user_nickname = (LinearLayout) fragment_myself.findViewById(R.id.ll_user_nickname);
         tv_nickname = (TextView) fragment_myself.findViewById(R.id.tv_nickname);
         tv_username = (TextView) fragment_myself.findViewById(R.id.tv_username);
-        tv_setting = (TextView) fragment_myself.findViewById(R.id.tv_setting);
         rl_user_head_large = (RelativeLayout) fragment_myself.findViewById(R.id.rl_user_head_large);
         iv_user_head_large = (ImageView) fragment_myself.findViewById(R.id.iv_user_head_large);
         iv_close_user_head_large = (ImageView) fragment_myself.findViewById(R.id.iv_close_user_head_large);
@@ -100,6 +119,7 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
 
     private void initData() {
         userInfo = getActivity().getSharedPreferences("userInfo", Context.MODE_PRIVATE);
+        user_id = userInfo.getInt("user_id", -1);
         username = userInfo.getString("phone_number", "");
         nickname = userInfo.getString("nickname", "");
         userHead = userInfo.getString("userHead", "");
@@ -122,9 +142,17 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
         iv_setting.setOnClickListener(this);
         iv_setting_more.setOnClickListener(this);
         rl_setting.setOnClickListener(this);
+        tv_setting.setOnClickListener(this);
+        iv_collect.setOnClickListener(this);
+        iv_collect_more.setOnClickListener(this);
+        rl_collect.setOnClickListener(this);
+        tv_collect.setOnClickListener(this);
+        iv_about_us.setOnClickListener(this);
+        iv_about_us_more.setOnClickListener(this);
+        rl_about_us.setOnClickListener(this);
+        tv_about_us.setOnClickListener(this);
         tv_nickname.setOnClickListener(this);
         tv_username.setOnClickListener(this);
-        tv_setting.setOnClickListener(this);
         ll_user_nickname.setOnClickListener(this);
 
         ll_user_username.setOnClickListener(this);
@@ -158,10 +186,25 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
                 Intent setting = new Intent(getActivity(), SettingActivity.class);
                 getActivity().startActivity(setting);
                 break;
-            case R.id.iv_close_user_head_large:
-                rl_user_head_large.setVisibility(View.GONE);
-                setClickableTrue();
+            case R.id.rl_collect:
+            case R.id.iv_collect:
+            case R.id.tv_collect:
+            case R.id.iv_collect_more:
+                if(user_id == -1){
+                    Toast.makeText(getActivity(), "还没登录呢，不能查看收藏信息！！！", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                Intent collect = new Intent(getActivity(), CollectActivity.class);
+                getActivity().startActivity(collect);
                 break;
+            case R.id.rl_about_us:
+            case R.id.iv_about_us:
+            case R.id.tv_about_us:
+            case R.id.iv_about_us_more:
+                Intent about_us = new Intent(getActivity(), AboutUsActivity.class);
+                getActivity().startActivity(about_us);
+                break;
+            case R.id.iv_close_user_head_large:
             case R.id.rl_user_head_large:
                 rl_user_head_large.setVisibility(View.GONE);
                 setClickableTrue();
@@ -197,9 +240,17 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
         iv_setting.setClickable(false);
         iv_setting_more.setClickable(false);
         rl_setting.setClickable(false);
+        tv_setting.setClickable(false);
+        iv_collect.setClickable(false);
+        iv_collect_more.setClickable(false);
+        rl_collect.setClickable(false);
+        tv_collect.setClickable(false);
+        iv_about_us.setClickable(false);
+        iv_about_us_more.setClickable(false);
+        rl_about_us.setClickable(false);
+        tv_about_us.setClickable(false);
         tv_nickname.setClickable(false);
         tv_username.setClickable(false);
-        tv_setting.setClickable(false);
         ll_user_username.setClickable(false);
         ll_user_nickname.setClickable(false);
     }
@@ -209,9 +260,17 @@ public class MyselfFragment extends Fragment implements View.OnClickListener, Vi
         iv_setting.setClickable(true);
         iv_setting_more.setClickable(true);
         rl_setting.setClickable(true);
+        tv_setting.setClickable(true);
+        iv_collect.setClickable(true);
+        iv_collect_more.setClickable(true);
+        rl_collect.setClickable(true);
+        tv_collect.setClickable(true);
+        iv_about_us.setClickable(true);
+        iv_about_us_more.setClickable(true);
+        rl_about_us.setClickable(true);
+        tv_about_us.setClickable(true);
         tv_nickname.setClickable(true);
         tv_username.setClickable(true);
-        tv_setting.setClickable(true);
         ll_user_nickname.setClickable(true);
         ll_user_username.setClickable(true);
     }

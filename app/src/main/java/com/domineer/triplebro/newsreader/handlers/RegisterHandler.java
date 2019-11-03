@@ -8,7 +8,7 @@ import android.os.Message;
 
 import com.domineer.triplebro.newsreader.activities.AdminManagerActivity;
 import com.domineer.triplebro.newsreader.activities.RegisterActivity;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 
 
 public class RegisterHandler extends Handler {

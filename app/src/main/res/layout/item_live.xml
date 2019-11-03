@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite"
+    android:padding="10dp">
+
+    <!--<fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+        android:id="@+id/vp_live"
+        android:layout_width="match_parent"
+        android:layout_height="220dp" />-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:id="@+id/iv_live"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_live"
+        android:id="@+id/tv_title"
+        android:textSize="15dp"
+        android:textColor="@color/colorAppStyle"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:textStyle="bold" />
+
+    <RelativeLayout
+        android:id="@+id/rl_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/tv_title">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_time"
+            android:textSize="12dp"
+            android:textColor="@color/colorLine"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_author"
+            android:textSize="12dp"
+            android:layout_toRightOf="@id/tv_time"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/colorLine"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_playTime"
+            android:textSize="12dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/tv_author"
+            android:text="播放次数："
+            android:textColor="@color/colorLine"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

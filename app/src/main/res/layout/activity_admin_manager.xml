@@ -35,4 +35,34 @@
         android:layout_marginRight="50dp"
         android:layout_marginTop="20dp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/tv_submit_news"
+        android:text="发 布 新 闻"
+        android:textColor="@color/colorAppStyle"
+        android:background="@drawable/shape_admin_button"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_below="@id/tv_shut_up"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/tv_admin_info"
+        android:text="个 人 信 息"
+        android:textColor="@color/colorAppStyle"
+        android:background="@drawable/shape_admin_button"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_below="@id/tv_submit_news"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="20dp"/>
+
 </RelativeLayout>

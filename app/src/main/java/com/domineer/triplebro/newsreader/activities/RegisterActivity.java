@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.domineer.triplebro.newsreader.R;
 import com.domineer.triplebro.newsreader.controllers.RegisterManager;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
 

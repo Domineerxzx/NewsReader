@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.domineer.triplebro.newsreader.R;
 import com.domineer.triplebro.newsreader.fragments.MyselfFragment;
-import com.domineer.triplebro.newsreader.propertoes.ProjectProperties;
+import com.domineer.triplebro.newsreader.properties.ProjectProperties;
 import com.domineer.triplebro.newsreader.utils.PermissionUtil;
 
 import java.io.File;
@@ -58,7 +58,7 @@ public class ChooseUserHeadDialogUtil {
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     //步骤二：Android 7.0及以上获取文件 Uri
-                    mUri = FileProvider.getUriForFile(myselfFragment.getActivity(), "com.domineer.triplebro.microbloggraduationdesign", file);
+                    mUri = FileProvider.getUriForFile(myselfFragment.getActivity(), "com.domineer.triplebro.newsreader", file);
                 } else {
                     //步骤三：获取文件Uri
                     mUri = Uri.fromFile(file);
