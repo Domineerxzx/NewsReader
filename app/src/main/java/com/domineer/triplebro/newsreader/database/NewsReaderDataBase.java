@@ -51,34 +51,6 @@ public class NewsReaderDataBase extends SQLiteOpenHelper {
         db.execSQL("create table readInfo(_id Integer primary key autoincrement,news_id number,video_id number,read_time number" +
                 ",FOREIGN KEY (news_id) REFERENCES newsInfo(_id)" +
                 ",FOREIGN KEY (video_id) REFERENCES videoInfo(_id))");
-
-//        //发布信息表
-//        db.execSQL("create table issueInfo(_id Integer primary key autoincrement,user_id Integer," +
-//                "issue_content varchar(500),issue_time varchar(100),FOREIGN KEY (user_id) REFERENCES userInfo(_id))");
-//
-//        //发布图片表
-//        db.execSQL("create table issueImageInfo(_id Integer primary key autoincrement,issue_id Integer,issue_image varchar(200)," +
-//                "FOREIGN KEY (issue_id) REFERENCES issueInfo(_id))");
-//
-//        //关注表
-//        db.execSQL("create table careInfo(_id Integer primary key autoincrement,cared_user_id Integer,user_id Integer" +
-//                ",FOREIGN KEY (cared_user_id) REFERENCES userInfo(_id)," +
-//                "FOREIGN KEY (user_id) REFERENCES userInfo(_id))");
-//
-//        //聊天表
-//        db.execSQL("create table chatInfo(_id Integer primary key autoincrement,user_id_one Integer,user_id_two Integer,chat_content varchar(200),time varchar(100)" +
-//                ",FOREIGN KEY (user_id_one) REFERENCES userInfo(_id)" +
-//                ",FOREIGN KEY (user_id_two) REFERENCES userInfo(_id))");
-//
-//        //搜索历史表
-//        db.execSQL("create table searchHistoryInfo(_id Integer primary key autoincrement,user_id Integer,search_content varchar(100),search_count Integer" +
-//                ",FOREIGN KEY (user_id) REFERENCES userInfo(_id))");
-//
-//        //评论表
-//        db.execSQL("create table CommentInfo(_id Integer primary key autoincrement,user_id Integer,issue_id Integer,comment_content varchar(2000),time varchar(100),comment_id Integer" +
-//                ",FOREIGN KEY (user_id) REFERENCES userInfo(_id)" +
-//                ",FOREIGN KEY (issue_id) REFERENCES issueInfo(_id))");
-
     }
 
     @Override

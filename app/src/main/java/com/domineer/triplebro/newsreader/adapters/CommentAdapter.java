@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.domineer.triplebro.newsreader.R;
 import com.domineer.triplebro.newsreader.activities.NewsActivity;
 import com.domineer.triplebro.newsreader.models.CommentInfo;
@@ -73,9 +75,9 @@ public class CommentAdapter extends BaseAdapter {
         viewHolder.tv_nickname.setText(userInfo.getNickname());
         String userHead = userInfo.getUserHead();
         if(userHead == null || userHead.length() == 0){
-            Glide.with(context).load(R.drawable.user_head_default).into(viewHolder.iv_comment);
+            Glide.with(context).load(R.drawable.user_head_default).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(viewHolder.iv_comment);
         }else{
-            Glide.with(context).load(userHead).into(viewHolder.iv_comment);
+            Glide.with(context).load(userHead).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(viewHolder.iv_comment);
         }
         return convertView;
     }

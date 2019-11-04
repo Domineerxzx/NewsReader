@@ -54,6 +54,8 @@ public class ShutUpActivity extends AppCompatActivity implements View.OnClickLis
         vp_shut_up.setCurrentItem(0);
     }
 
+
+
     private void setOnClickListener() {
         iv_close_shut_up.setOnClickListener(this);
     }

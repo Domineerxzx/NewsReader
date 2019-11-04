@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.domineer.triplebro.newsreader.activities.NewsActivity;
 import com.domineer.triplebro.newsreader.models.CommentInfo;
+import com.domineer.triplebro.newsreader.models.UserInfo;
 import com.domineer.triplebro.newsreader.providers.DataBaseProvider;
 
 import java.util.List;
@@ -46,5 +47,10 @@ public class NewsController {
 
     public void addNewsCollect(int user_id, int news_id) {
         dataBaseProvider.addNewsCollect(news_id,user_id);
+    }
+
+    public UserInfo findUserInfo(int user_id) {
+        UserInfo userInfo = dataBaseProvider.findUserInfo(user_id);
+        return userInfo;
     }
 }

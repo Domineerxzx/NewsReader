@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.domineer.triplebro.newsreader.models.CommentInfo;
+import com.domineer.triplebro.newsreader.models.UserInfo;
 import com.domineer.triplebro.newsreader.models.VideoInfo;
 import com.domineer.triplebro.newsreader.providers.DataBaseProvider;
 
@@ -58,5 +59,10 @@ public class LiveController {
 
     public void addVideoCollect(int user_id, int video_id) {
         dataBaseProvider.addVideoCollect(video_id,user_id);
+    }
+
+    public UserInfo findUserInfo(int user_id) {
+        UserInfo userInfo = dataBaseProvider.findUserInfo(user_id);
+        return userInfo;
     }
 }

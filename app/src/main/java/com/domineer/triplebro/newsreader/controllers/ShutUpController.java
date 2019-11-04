@@ -32,4 +32,12 @@ public class ShutUpController {
         List<UserInfo> userInfoList = dataBaseProvider.findShutUpUserInfoList();
         return userInfoList;
     }
+
+    public void shutUpUser(int id, String startTime, String endTime, String shutUpReason) {
+        dataBaseProvider.shutUpUser(id,startTime,endTime,shutUpReason);
+    }
+
+    public void cancelShutUpUser(int id) {
+        dataBaseProvider.cancelShutUpUser(id);
+    }
 }

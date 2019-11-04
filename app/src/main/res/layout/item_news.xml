@@ -67,7 +67,4 @@
         android:layout_toLeftOf="@id/tv_author"
         android:layout_marginRight="10dp"/>
 
-
-
-
 </RelativeLayout>

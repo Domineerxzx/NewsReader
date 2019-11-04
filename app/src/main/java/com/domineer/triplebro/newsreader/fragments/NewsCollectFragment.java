@@ -53,6 +53,12 @@ public class NewsCollectFragment extends Fragment implements AdapterView.OnItemC
         initData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initView() {
         lv_news = (ListView) fragment_news_collect.findViewById(R.id.lv_news);
     }

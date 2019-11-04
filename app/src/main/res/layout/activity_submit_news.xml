@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorWhite">
+
+        <ImageView
+            android:id="@+id/iv_close_submit_news"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@id/tv_title"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:text="发布新闻"
+            android:textSize="16dp"
+            android:textColor="@color/colorAppStyle"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/colorLine" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="20dp"
+        android:overScrollMode="never"
+        android:layout_below="@id/rl_title" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_news_title_title"
+                android:text="发布新闻标题："
+                android:textSize="12dp"
+                android:textColor="@color/colorAppStyle" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_user_edit"
+                android:layout_below="@id/tv_news_title_title"
+                android:layout_marginTop="10dp"
+                android:minHeight="50dp"
+                android:textSize="15dp"
+                android:textColor="@color/colorAppStyle"
+                android:id="@+id/et_news_title"
+                android:hint="请输入新闻标题"
+                android:gravity="center_vertical"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_news_content_title"
+                android:layout_below="@id/et_news_title"
+                android:layout_marginTop="20dp"
+                android:text="发布新闻内容："
+                android:textSize="12dp"
+                android:textColor="@color/colorAppStyle" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_user_edit"
+                android:layout_below="@id/tv_news_content_title"
+                android:layout_marginTop="10dp"
+                android:minHeight="200dp"
+                android:textSize="15dp"
+                android:id="@+id/et_news_content"
+                android:hint="请输入新闻内容"
+                android:textColor="@color/colorAppStyle"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_news_type_title"
+                android:layout_below="@id/et_news_content"
+                android:layout_marginTop="20dp"
+                android:text="发布新闻类别："
+                android:textSize="12dp"
+                android:textColor="@color/colorAppStyle" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/shape_user_edit"
+                android:layout_below="@id/tv_news_type_title"
+                android:layout_marginTop="10dp"
+                android:textSize="15dp"
+                android:id="@+id/tv_news_type"
+                android:hint="请选择新闻类别"
+                android:textColor="@color/colorAppStyle"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tv_news_image_title"
+                android:layout_below="@id/tv_news_type"
+                android:layout_marginTop="20dp"
+                android:text="发布新闻图片："
+                android:textSize="12dp"
+                android:textColor="@color/colorAppStyle" />
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:id="@+id/iv_news_image"
+                android:layout_below="@id/tv_news_image_title"
+                android:layout_marginTop="10dp"/>
+
+            <LinearLayout
+                android:id="@+id/ll_delete_image"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_alignRight="@id/iv_news_image"
+                android:layout_alignTop="@id/iv_news_image"
+                android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_delete_image"
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_gravity="top"
+                    android:background="@mipmap/close" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="发布"
+                android:background="@drawable/shape_user_button"
+                android:textColor="@color/colorWhite"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:id="@+id/tv_submit_news"
+                android:layout_below="@id/iv_news_image"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

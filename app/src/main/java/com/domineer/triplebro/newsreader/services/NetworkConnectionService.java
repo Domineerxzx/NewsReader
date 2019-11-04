@@ -213,6 +213,8 @@ public class NetworkConnectionService extends Service {
                 while (adminInfo.moveToNext()) {
                     String pw = adminInfo.getString(2);
                     adminId = adminInfo.getInt(0);
+                    String nickName = adminInfo.getString(3);
+                    String adminHead = adminInfo.getString(4);
                     if (password.equals(pw)) {
                         isCheckSuccess = true;
                         SharedPreferences sharedPreferences = context.getSharedPreferences("adminInfo", Context.MODE_PRIVATE);
@@ -220,6 +222,8 @@ public class NetworkConnectionService extends Service {
                         edit.putInt("admin_id", adminId);
                         edit.putString("phone_number", phone_number);
                         edit.putString("password", password);
+                        edit.putString("nickName", nickName);
+                        edit.putString("userHead", adminHead);
                         edit.commit();
                         loginHandler.sendEmptyMessage(ProjectProperties.LOGIN_ADMIN_SUCCESS);
                         return;

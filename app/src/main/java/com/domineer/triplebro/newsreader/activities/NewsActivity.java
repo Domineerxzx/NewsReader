@@ -21,6 +21,7 @@ import com.domineer.triplebro.newsreader.models.AdminInfo;
 import com.domineer.triplebro.newsreader.models.CommentInfo;
 import com.domineer.triplebro.newsreader.models.NewsInfo;
 import com.domineer.triplebro.newsreader.models.ReadInfo;
+import com.domineer.triplebro.newsreader.models.UserInfo;
 import com.domineer.triplebro.newsreader.providers.DataBaseProvider;
 
 import java.util.List;
@@ -51,6 +52,7 @@ public class NewsActivity extends Activity implements View.OnClickListener {
     private ReadInfo readInfo;
     private ImageView iv_collect;
     private boolean isCollect;
+    private int isShutUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class NewsActivity extends Activity implements View.OnClickListener {
         newsInfo = (NewsInfo) intent.getSerializableExtra("newsInfo");
         userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
         user_id = userInfo.getInt("user_id", -1);
+        isShutUp = userInfo.getInt("isShutUp", -1);
         isCollect = newsController.getIsCollect(newsInfo.get_id(),user_id);
         if(user_id == -1){
             tv_tip.setVisibility(View.VISIBLE);
@@ -125,7 +128,6 @@ public class NewsActivity extends Activity implements View.OnClickListener {
     }
 
     private void setOnClickListener() {
-
         iv_close_news.setOnClickListener(this);
         tv_submit_comment.setOnClickListener(this);
         tv_clear.setOnClickListener(this);
@@ -139,12 +141,18 @@ public class NewsActivity extends Activity implements View.OnClickListener {
                 finish();
                 break;
             case R.id.tv_submit_comment:
+                if(isShutUp == 1){
+                    UserInfo userInfo = newsController.findUserInfo(user_id);
+                    Toast.makeText(this, "禁言原因："+userInfo.getShutUpReason()+"禁言时间："+userInfo.getShutUpStartTime()+" - "+userInfo.getShutUpEndTime()+"您已被禁言，请联系管理员解禁！！！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String commentContent = et_comment.getText().toString().trim();
                 if(commentContent.length() != 0){
                     long comment_result = newsController.submitComment(user_id, newsInfo.get_id(), commentContent);
                     if (comment_result >0){
                         commentInfoList = newsController.findCommentInfoListByNewsId(newsInfo.get_id());
                         commentAdapter.setCommentInfoList(commentInfoList);
+                        et_comment.setText("");
                     }else {
                         Toast.makeText(this, "评论失败，请联系开发人员！！！", Toast.LENGTH_SHORT).show();
                         return;

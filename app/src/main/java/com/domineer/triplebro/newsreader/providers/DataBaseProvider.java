@@ -19,7 +19,9 @@ import com.domineer.triplebro.newsreader.models.VideoInfo;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Domineer
@@ -497,8 +499,8 @@ public class DataBaseProvider implements DataProvider {
         SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
         Cursor searchInfoCursor = db.query("searchInfo", null, "user_id = ?", new String[]{String.valueOf(user_id)}, null, null, "_id DESC");
         List<SearchInfo> searchInfoList = new ArrayList<>();
-        if(searchInfoCursor!= null && searchInfoCursor.getCount()>0){
-            while (searchInfoCursor.moveToNext()){
+        if (searchInfoCursor != null && searchInfoCursor.getCount() > 0) {
+            while (searchInfoCursor.moveToNext()) {
                 SearchInfo searchInfo = new SearchInfo();
                 searchInfo.set_id(searchInfoCursor.getInt(0));
                 searchInfo.setSearchContent(searchInfoCursor.getString(1));
@@ -516,7 +518,7 @@ public class DataBaseProvider implements DataProvider {
 
     public List<NewsInfo> searchNewsInfoList(String searchContent) {
         SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
-        Cursor newsInfoCursor = db.query("newsInfo", null, "title like ?", new String[]{"%"+searchContent+"%"}, null, null, null);
+        Cursor newsInfoCursor = db.query("newsInfo", null, "title like ?", new String[]{"%" + searchContent + "%"}, null, null, null);
         List<NewsInfo> newsInfoList = new ArrayList<>();
         if (newsInfoCursor != null && newsInfoCursor.getCount() > 0) {
             while (newsInfoCursor.moveToNext()) {
@@ -541,33 +543,154 @@ public class DataBaseProvider implements DataProvider {
     public void addSearchHistory(int user_id, String searchContent) {
         SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("searchContent",searchContent);
+        contentValues.put("searchContent", searchContent);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
         long timeStamp = System.currentTimeMillis();
         String time = simpleDateFormat.format(timeStamp);
-        contentValues.put("searchTime",time);
-        contentValues.put("user_id",user_id);
-        db.insert("searchInfo",null,contentValues);
+        contentValues.put("searchTime", time);
+        contentValues.put("user_id", user_id);
+        db.insert("searchInfo", null, contentValues);
         db.close();
     }
 
     public void deleteAllSearchInfo(int user_id) {
         SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
-        db.delete("searchInfo","user_id = ?",new String[]{String.valueOf(user_id)});
+        db.delete("searchInfo", "user_id = ?", new String[]{String.valueOf(user_id)});
         db.close();
     }
 
     public void deleteSearchInfoById(int search_id) {
         SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
-        db.delete("searchInfo","_id = ?",new String[]{String.valueOf(search_id)});
+        db.delete("searchInfo", "_id = ?", new String[]{String.valueOf(search_id)});
         db.close();
     }
 
     public List<UserInfo> findNotShutUpUserInfoList() {
-        return null;
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        Cursor userInfoCursor = db.query("userInfo", null, "is_shut_up = ?", new String[]{String.valueOf(0)}, null, null, null);
+        List<UserInfo> userInfoList = new ArrayList<>();
+        if (userInfoCursor != null && userInfoCursor.getCount() > 0) {
+            while (userInfoCursor.moveToNext()) {
+                UserInfo userInfo = new UserInfo();
+                userInfo.set_id(userInfoCursor.getInt(0));
+                userInfo.setPhone_number(userInfoCursor.getString(1));
+                userInfo.setPassword(userInfoCursor.getString(2));
+                userInfo.setNickname(userInfoCursor.getString(3));
+                userInfo.setUserHead(userInfoCursor.getString(4));
+                userInfo.setIsShutUp(userInfoCursor.getInt(5));
+                userInfo.setShutUpReason(userInfoCursor.getString(6));
+                userInfo.setShutUpStartTime(userInfoCursor.getString(7));
+                userInfo.setShutUpEndTime(userInfoCursor.getString(8));
+                userInfoList.add(userInfo);
+            }
+        }
+        if (userInfoCursor != null) {
+            userInfoCursor.close();
+        }
+        db.close();
+        return userInfoList;
     }
 
     public List<UserInfo> findShutUpUserInfoList() {
-        return null;
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        Cursor userInfoCursor = db.query("userInfo", null, "is_shut_up = ?", new String[]{String.valueOf(1)}, null, null, null);
+        List<UserInfo> userInfoList = new ArrayList<>();
+        if (userInfoCursor != null && userInfoCursor.getCount() > 0) {
+            while (userInfoCursor.moveToNext()) {
+                UserInfo userInfo = new UserInfo();
+                userInfo.set_id(userInfoCursor.getInt(0));
+                userInfo.setPhone_number(userInfoCursor.getString(1));
+                userInfo.setPassword(userInfoCursor.getString(2));
+                userInfo.setNickname(userInfoCursor.getString(3));
+                userInfo.setUserHead(userInfoCursor.getString(4));
+                userInfo.setIsShutUp(userInfoCursor.getInt(5));
+                userInfo.setShutUpReason(userInfoCursor.getString(6));
+                userInfo.setShutUpStartTime(userInfoCursor.getString(7));
+                userInfo.setShutUpEndTime(userInfoCursor.getString(8));
+                userInfoList.add(userInfo);
+            }
+        }
+        if (userInfoCursor != null) {
+            userInfoCursor.close();
+        }
+        db.close();
+        return userInfoList;
+    }
+
+    public void shutUpUser(int id, String startTime, String endTime, String shutUpReason) {
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("is_shut_up", 1);
+        contentValues.put("shut_up_reason", shutUpReason);
+        contentValues.put("shut_up_start_time", startTime);
+        contentValues.put("shut_up_end_time", endTime);
+        db.update("userInfo", contentValues, "_id = ?", new String[]{String.valueOf(id)});
+    }
+
+    public void cancelShutUpUser(int id) {
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("is_shut_up", 0);
+        db.update("userInfo", contentValues, "_id = ?", new String[]{String.valueOf(id)});
+    }
+
+    public Map<String, Integer> findTypeInfoMap() {
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        Cursor typeInfoCursor = db.query("typeInfo", null, null, null, null, null, null);
+        Map<String, Integer> typeMap = new HashMap<>();
+        if (typeInfoCursor != null && typeInfoCursor.getCount() > 0) {
+            while (typeInfoCursor.moveToNext()) {
+                TypeInfo typeInfo = new TypeInfo(typeInfoCursor.getInt(0), typeInfoCursor.getString(1), typeInfoCursor.getString(2));
+                typeMap.put(typeInfo.getTypeName(), typeInfo.get_id());
+            }
+        }
+        if (typeInfoCursor != null) {
+            typeInfoCursor.close();
+        }
+        db.close();
+        return typeMap;
+    }
+
+    public void submitNews(int admin_id, String newsTitle, String newsContent, String image, int newsType) {
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("author_id", admin_id);
+        contentValues.put("title", newsTitle);
+        contentValues.put("content", newsContent);
+        contentValues.put("image", image);
+        contentValues.put("type_id", newsType);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        long timeStamp = System.currentTimeMillis();
+        String time = simpleDateFormat.format(timeStamp);
+        contentValues.put("time", time);
+        long newsId = db.insert("newsInfo", null, contentValues);
+        contentValues = new ContentValues();
+        contentValues.put("news_id", newsId);
+        contentValues.put("read_time", 0);
+        db.insert("readInfo", null, contentValues);
+        db.close();
+    }
+
+    public UserInfo findUserInfo(int user_id) {
+        SQLiteDatabase db = newsReaderDataBase.getWritableDatabase();
+        Cursor userInfoCursor = db.query("userInfo", null, "_id = ?", new String[]{String.valueOf(user_id)}, null, null, null);
+        UserInfo userInfo = new UserInfo();
+        if (userInfoCursor != null && userInfoCursor.getCount() > 0) {
+            userInfoCursor.moveToNext();
+            userInfo.set_id(userInfoCursor.getInt(0));
+            userInfo.setPhone_number(userInfoCursor.getString(1));
+            userInfo.setPassword(userInfoCursor.getString(2));
+            userInfo.setNickname(userInfoCursor.getString(3));
+            userInfo.setUserHead(userInfoCursor.getString(4));
+            userInfo.setIsShutUp(userInfoCursor.getInt(5));
+            userInfo.setShutUpReason(userInfoCursor.getString(6));
+            userInfo.setShutUpStartTime(userInfoCursor.getString(7));
+            userInfo.setShutUpEndTime(userInfoCursor.getString(8));
+        }
+        if (userInfoCursor != null) {
+            userInfoCursor.close();
+        }
+        db.close();
+        return userInfo;
     }
 }

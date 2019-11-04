@@ -53,6 +53,12 @@ public class VideoCollectFragment extends Fragment implements AdapterView.OnItem
         initData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initView() {
         lv_video = (ListView) fragment_video_collect.findViewById(R.id.lv_video);
     }

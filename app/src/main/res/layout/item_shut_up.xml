@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <ImageView
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/iv_user_head"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_user_head"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:textSize="18dp"
+        android:id="@+id/tv_nickname"
+        android:singleLine="true"
+        android:textStyle="bold"
+        android:textColor="@color/colorAppStyle"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_toRightOf="@id/iv_user_head"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/tv_nickname"
+        android:layout_marginLeft="10dp"
+        android:textSize="12dp"
+        android:id="@+id/tv_shut_up_reason"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/colorAppStyle"
+        android:background="@drawable/shape_user_edit"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/iv_user_head"
+        android:layout_marginRight="20dp"
+        android:layout_below="@id/tv_shut_up_reason"
+        android:layout_marginLeft="10dp"
+        android:textSize="12dp"
+        android:id="@+id/tv_shut_time"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/colorAppStyle"
+        android:background="@drawable/shape_user_edit"/>
+
+    <TextView
+        android:layout_width="90dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="取消禁言"
+        android:layout_marginLeft="10dp"
+        android:textSize="12dp"
+        android:id="@+id/tv_cancel_shut_up"
+        android:background="@drawable/shape_alpha_card"
+        android:textColor="@color/colorWhite"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/tv_shut_time"/>
+
+</RelativeLayout>

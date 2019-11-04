@@ -19,6 +19,7 @@ import com.domineer.triplebro.newsreader.adapters.CommentAdapter;
 import com.domineer.triplebro.newsreader.controllers.LiveController;
 import com.domineer.triplebro.newsreader.models.AdminInfo;
 import com.domineer.triplebro.newsreader.models.CommentInfo;
+import com.domineer.triplebro.newsreader.models.UserInfo;
 import com.domineer.triplebro.newsreader.models.VideoInfo;
 import com.domineer.triplebro.newsreader.providers.DataBaseProvider;
 
@@ -53,6 +54,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
     private List<CommentInfo> commentInfoList;
     private ImageView iv_close_video;
     private boolean isCollect;
+    private int isShutUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +91,7 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
         liveController = new LiveController(this);
         userInfo = getSharedPreferences("userInfo", MODE_PRIVATE);
         user_id = userInfo.getInt("user_id", -1);
+        isShutUp = userInfo.getInt("isShutUp", -1);
         isCollect = liveController.getVideoIsCollect(videoInfo.get_id(),user_id);
         liveController.updateVideoPlay(videoInfo.get_id(),videoInfo.getPlayTime());
         if(user_id == -1){
@@ -157,12 +160,18 @@ public class VideoActivity extends AppCompatActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.tv_submit_comment:
+                if(isShutUp == 1){
+                    UserInfo userInfo = liveController.findUserInfo(user_id);
+                    Toast.makeText(this, "禁言原因："+userInfo.getShutUpReason()+"禁言时间："+userInfo.getShutUpStartTime()+" - "+userInfo.getShutUpEndTime()+"您已被禁言，请联系管理员解禁！！！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 String commentContent = et_comment.getText().toString().trim();
                 if(commentContent.length() != 0){
                     long comment_result = liveController.submitComment(user_id, videoInfo.get_id(), commentContent);
                     if (comment_result >0){
                         commentInfoList = liveController.findCommentInfoListByVideoId(videoInfo.get_id());
                         commentAdapter.setCommentInfoList(commentInfoList);
+                        et_comment.setText("");
                     }else {
                         Toast.makeText(this, "评论失败，请联系开发人员！！！", Toast.LENGTH_SHORT).show();
                         return;

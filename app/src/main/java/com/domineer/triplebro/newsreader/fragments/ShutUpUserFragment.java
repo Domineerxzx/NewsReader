@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.domineer.triplebro.newsreader.R;
+import com.domineer.triplebro.newsreader.adapters.ShutUpAdapter;
 import com.domineer.triplebro.newsreader.controllers.ShutUpController;
 import com.domineer.triplebro.newsreader.models.UserInfo;
 
@@ -27,6 +28,7 @@ public class ShutUpUserFragment extends Fragment {
     private ListView lv_shut_up;
     private ShutUpController shutUpController;
     private List<UserInfo> userInfoList;
+    private ShutUpAdapter shutUpAdapter;
 
     @Nullable
     @Override
@@ -44,6 +46,12 @@ public class ShutUpUserFragment extends Fragment {
         initData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     private void initView() {
         lv_shut_up = (ListView) fragment_shut_up.findViewById(R.id.lv_shut_up);
     }
@@ -51,6 +59,8 @@ public class ShutUpUserFragment extends Fragment {
     private void initData() {
         shutUpController = new ShutUpController(getActivity());
         userInfoList = shutUpController.findShutUpUserInfoList();
+        shutUpAdapter = new ShutUpAdapter(getActivity(), userInfoList);
+        lv_shut_up.setAdapter(shutUpAdapter);
     }
 
     private void setOnClickListener() {

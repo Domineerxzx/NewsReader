@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.domineer.triplebro.newsreader.R;
+import com.domineer.triplebro.newsreader.models.AdminInfo;
 
 public class AdminManagerActivity extends Activity implements View.OnClickListener {
 
@@ -34,6 +35,8 @@ public class AdminManagerActivity extends Activity implements View.OnClickListen
 
     private void setOnClickListener() {
         tv_shut_up.setOnClickListener(this);
+        tv_admin_info.setOnClickListener(this);
+        tv_submit_news.setOnClickListener(this);
     }
 
     @Override
@@ -44,8 +47,12 @@ public class AdminManagerActivity extends Activity implements View.OnClickListen
                 startActivity(shutUp);
                 break;
             case R.id.tv_submit_news:
+                Intent submitNews = new Intent(this, SubmitNewsActivity.class);
+                startActivity(submitNews);
                 break;
             case R.id.tv_admin_info:
+                Intent adminInfo = new Intent(this, AdminInfoActivity.class);
+                startActivity(adminInfo);
                 break;
             case R.id.iv_close_admin_manager:
                 finish();

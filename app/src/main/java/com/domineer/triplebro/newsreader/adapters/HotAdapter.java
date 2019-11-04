@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.domineer.triplebro.newsreader.R;
 import com.domineer.triplebro.newsreader.models.AdminInfo;
 import com.domineer.triplebro.newsreader.models.NewsInfo;
@@ -96,9 +98,9 @@ public class HotAdapter extends BaseAdapter {
         viewHolder.tv_author.setText(adminInfo.getNickname());
         String authorHead = adminInfo.getUserHead();
         if (authorHead == null || authorHead.length() == 0) {
-            Glide.with(context).load(R.drawable.user_head_default).into(viewHolder.iv_author);
+            Glide.with(context).load(R.drawable.user_head_default).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(viewHolder.iv_author);
         } else {
-            Glide.with(context).load(authorHead).into(viewHolder.iv_author);
+            Glide.with(context).load(authorHead).apply(RequestOptions.bitmapTransform(new CircleCrop())).into(viewHolder.iv_author);
         }
         return convertView;
     }

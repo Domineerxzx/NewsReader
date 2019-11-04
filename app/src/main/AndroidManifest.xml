@@ -17,8 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.ShutUpActivity"
-            android:theme="@style/AppCompatFullScreenTheme"/>
+        <activity android:name=".activities.SubmitNewsActivity"></activity>
+        <activity android:name=".activities.AdminInfoActivity" />
+        <activity
+            android:name=".activities.ShutUpActivity"
+            android:theme="@style/AppCompatFullScreenTheme" />
         <activity
             android:name=".activities.VideoActivity"
             android:theme="@style/AppCompatFullScreenTheme" />

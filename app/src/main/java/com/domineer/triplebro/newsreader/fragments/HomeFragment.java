@@ -67,12 +67,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     }
 
     private void setOnClickListener() {
-       fl_search.setOnClickListener(this);
-       rl_search.setOnClickListener(this);
-       iv_search.setOnClickListener(this);
-       tv_search.setOnClickListener(this);
-       mlv_home.setOnItemClickListener(this);
+        fl_search.setOnClickListener(this);
+        rl_search.setOnClickListener(this);
+        iv_search.setOnClickListener(this);
+        tv_search.setOnClickListener(this);
+        mlv_home.setOnItemClickListener(this);
         bn_banner.setOnBannerListener(this);
+        mlv_home.setFocusable(false);
     }
 
     private void initData() {
@@ -107,12 +108,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.fl_search:
             case R.id.rl_search:
             case R.id.iv_search:
             case R.id.tv_search:
-                if(user_id == -1){
+                if (user_id == -1) {
                     Toast.makeText(getActivity(), "还没登录呢，不能使用搜索功能！！！", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -125,14 +126,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent news = new Intent(getActivity(), NewsActivity.class);
-        news.putExtra("newsInfo",newsInfoList.get(position));
+        news.putExtra("newsInfo", newsInfoList.get(position));
         getActivity().startActivity(news);
     }
 
     @Override
     public void OnBannerClick(int position) {
         Intent news = new Intent(getActivity(), NewsActivity.class);
-        news.putExtra("newsInfo",bannerNewsList.get(position));
+        news.putExtra("newsInfo", bannerNewsList.get(position));
         getActivity().startActivity(news);
     }
 }
